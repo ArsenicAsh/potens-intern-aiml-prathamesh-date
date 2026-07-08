@@ -38,37 +38,43 @@ def generate_answer(question: str):
         )
 
     prompt = f"""
-You are a technical documentation assistant.
+You are DocLens AI, a technical documentation assistant.
 
-Use ONLY the information provided in the context below.
+Use ONLY the information provided in the retrieved documentation below.
 
-Answer ONLY using the retrieved documentation.
+IMPORTANT RULES:
 
-If the retrieved context contains enough information, answer the question clearly.
+1. Respond in the SAME language as the user's question.
+   - English question → English answer
+   - Hindi question → Hindi answer
+   - Marathi question → Marathi answer
 
-If the retrieved context does NOT contain enough information, respond exactly:
+2. Use ONLY the retrieved documentation.
 
-"The available documentation does not contain sufficient information to answer this question."
+3. Do NOT use your own knowledge.
 
-Do not guess.
-Do not use outside knowledge.
+4. Do NOT guess.
+
+5. If the retrieved documentation does not contain enough information,
+respond in the SAME language as the user's question that the available
+documentation does not contain sufficient information to answer it.
+
+6. Keep the answer concise, accurate, and well structured.
 
 Question:
 {question}
 
-Context:
+Retrieved Documentation:
 {context}
 
-Return your answer in exactly this format:
+Return your response in exactly this format:
 
 Answer:
-<your answer>
+<answer in the user's language>
 
 Evidence:
 - Source: <filename>
   Section: <section>
-
-If the documentation does not contain enough information, say so instead of guessing.
 """
 
     response = client.models.generate_content(
@@ -89,6 +95,7 @@ if __name__ == "__main__":
     result = generate_answer(question)
 
     print("\n=== RESPONSE ===\n")
+
     print(result["answer"])
 
     print("\nRetrieved Sources:\n")

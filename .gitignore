@@ -1,20 +1,37 @@
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
+# Virtual Environment
+.venv/
 
+# Environment Variables
 .env
 
-.venv/
-venv/
+# Python Cache
+__pycache__/
+*.pyc
 
+# ChromaDB
 vector_store/
 
+# Streamlit Cache
 .streamlit/
 
-.pytest_cache/
-
-.idea/
+# IDE
 .vscode/
+.idea/# Virtual Environment
+.venv/
 
-*.log
+# Environment Variables
+.env
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# ChromaDB
+vector_store/
+
+# Streamlit Cache
+.streamlit/
+
+# IDE
+.vscode/
+.idea/
